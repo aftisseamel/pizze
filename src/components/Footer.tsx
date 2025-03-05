@@ -12,7 +12,7 @@ const Footer = () => {
           </div>
           
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="#" className="hover:text-yellow-500 transition-colors">Acceuil</a>
+            <a href="#" className="hover:text-yellow-500 transition-colors">Accueil</a>
             <a href="#menu" className="hover:text-yellow-500 transition-colors">Menu</a>
             <a href="#about" className="hover:text-yellow-500 transition-colors">A propos</a>
             {/* <a href="#contact" className="hover:text-yellow-500 transition-colors">Contacts</a> */}
@@ -24,8 +24,8 @@ const Footer = () => {
         <hr className="border-stone-800 mb-8" />
         
         <div className="text-center text-stone-400">
-          <p>&copy; {new Date().getFullYear()} Bella Napoli Pizzeria. All rights reserved.</p>
-          <p className="mt-2">Handcrafted with passion since 1985</p>
+          <p>&copy; {new Date().getFullYear()} Bella Napoli Pizzeria. Tous droits réservés.</p>
+          <p className="mt-2">Fabriqué à la main avec passion depuis 1985</p>
         </div>
       </div>
     </footer>
