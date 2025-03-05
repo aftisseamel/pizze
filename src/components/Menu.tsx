@@ -16,7 +16,27 @@ const filters = [
   { id: 'halal', name: 'Halal' }
 ];
 
-const menuItems = {
+type MenuItem = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  halal: boolean;
+  vegetarian: boolean;
+  tomate?: boolean;
+  creme?: boolean;
+  image: string;
+};
+
+type MenuItems = {
+  pizzas: MenuItem[];
+  pastas: MenuItem[];
+  starters: MenuItem[];
+  desserts: MenuItem[];
+  drinks: MenuItem[];
+};
+
+const menuItems: MenuItems = {
   pizzas: [
     {
       id: 1,
@@ -46,7 +66,7 @@ const menuItems = {
       price: 15.99,
       halal : true,
       vegetarian: true,
-      créme : true,
+      creme : true,
       image: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80'
     },
     {
@@ -76,7 +96,7 @@ const menuItems = {
       name: 'Lasagna',
       description: 'Couches de pâtes, sauce bolognaise, béchamel, parmesan',
       price: 14.99,
-      toamte : true,
+      tomate : true,
       halal : false,
       vegetarian: false,
       image: 'https://images.unsplash.com/photo-1619895092538-128341789043?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
@@ -150,26 +170,21 @@ const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('pizzas');
   const [activeFilter, setActiveFilter] = useState('Tous');
 
-  const filteredItems = menuItems[activeCategory].filter(item => {
+  const filteredItems = menuItems[activeCategory as keyof MenuItems].filter(item => {
     if (activeFilter === 'Tous'){
-      setActiveCategory('Tous');
       return true;
     }
     if (activeFilter === 'tomate') {
-      setActiveCategory('tomate');
-      return item.base === 'tomate';
+      return item.tomate === true;
     }
 
     if (activeFilter === 'creme'){
-      setActiveCategory('creme');
-      return item.base === 'creme';
+      return item.creme === true;
     }
     if (activeFilter === 'vegetarian'){
-      setActiveCategory('vegetarian');
       return item.vegetarian;
     }
     if (activeFilter === 'halal'){
-      setActiveCategory('halal');
       return item.halal;
     }
     return true;
