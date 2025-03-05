@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pizza, Clock, Phone, MapPin, Instagram, Facebook, Twitter } from 'lucide-react';
+import { Link, Element } from 'react-scroll';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Menu from './components/Menu';
@@ -11,10 +12,18 @@ function App() {
   return (
     <div className="min-h-screen bg-stone-50 text-stone-800">
       <Navbar />
-      <Hero />
-      <Menu />
-      <About />
-      {/* <Contact /> */}
+      <Element name="hero">
+        <Hero />
+      </Element>
+      <Element name="menu">
+        <Menu />
+      </Element>
+      <Element name="about">
+        <About />
+      </Element>
+      <Element name="contact">
+        <Contact />
+      </Element>
       <Footer />
     </div>
   );
