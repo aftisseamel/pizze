@@ -5,7 +5,7 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-stone-900 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Visit Us</h2>
+            <h2 className="text-4xl font-bold mb-4">Nous rendre visite</h2>
           <p className="text-lg text-stone-300 max-w-2xl mx-auto">
           Venez découvrir le véritable goût de l'Italie dans notre restaurant ou commandez en ligne pour une livraison.
           </p>

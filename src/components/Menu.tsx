@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 const menuCategories = [
   { id: 'pizzas', name: 'Pizzas' },
-  { id: 'pastas', name: 'Pastas' },
-  { id: 'starters', name: 'Starters' },
+  { id: 'pates', name: 'Pâtes' },
+  { id: 'entree', name: 'Entrées' },
   { id: 'desserts', name: 'Desserts' },
   { id: 'drinks', name: 'Drinks' }
 ];
@@ -30,8 +30,8 @@ type MenuItem = {
 
 type MenuItems = {
   pizzas: MenuItem[];
-  pastas: MenuItem[];
-  starters: MenuItem[];
+  pates: MenuItem[];
+  entree: MenuItem[];
   desserts: MenuItem[];
   drinks: MenuItem[];
 };
@@ -80,7 +80,7 @@ const menuItems: MenuItems = {
       image: 'https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
     }
   ],
-  pastas: [
+  pates: [
     {
       id: 5,
       name: 'Spaghetti Carbonara',
@@ -102,7 +102,7 @@ const menuItems: MenuItems = {
       image: 'https://images.unsplash.com/photo-1619895092538-128341789043?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
     }
   ],
-  starters: [
+  entree: [
     {
       id: 7,
       name: 'Bruschetta',
