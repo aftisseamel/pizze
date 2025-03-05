@@ -59,10 +59,10 @@ const Contact = () => {
           </div>
           
           <div className="bg-stone-800 p-8 rounded-lg">
-            <h3 className="text-2xl font-bold mb-6">Send Us a Message</h3>
+            <h3 className="text-2xl font-bold mb-6">Envoyez nous un message</h3>
             <form className="space-y-4">
               <div>
-                <label htmlFor="name" className="block mb-1 font-medium">Name</label>
+                <label htmlFor="name" className="block mb-1 font-medium">Nom</label>
                 <input 
                   type="text" 
                   id="name" 
