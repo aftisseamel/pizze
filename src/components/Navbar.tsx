@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className="bg-red-700 text-white sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <a href="#" className="flex items-center gap-2 text-2xl font-bold" style={{ color: "#ffffff" }}>
+        <a href="#" className="text-yellow-500 flex items-center gap-2 text-2xl font-bold">
           <Pizza size={28} />
           <span>Bella Napoli</span>
         </a>
