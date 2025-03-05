@@ -18,21 +18,21 @@ const Hero = () => {
             Authentic Italian <span className="text-yellow-500">Pizza</span>
           </h1>
           <p className="text-xl mb-8">
-            Handcrafted with love using traditional recipes and the finest ingredients imported from Italy.
+            Fabriqué à la main avec amour en utilisant des recettes traditionnelles et les meilleurs ingrédients importés d'Italie.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
               href="#menu" 
               className="bg-yellow-500 text-stone-900 px-6 py-3 rounded-md font-medium hover:bg-yellow-400 transition-colors text-center"
             >
-              View Our Menu
+              Voir Notre Menu
             </a>
-            <a 
+            {/* <a 
               href="tel:+123456789" 
               className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-stone-900 transition-colors text-center"
             >
-              Order Now
-            </a>
+              Commander Maintenant
+            </a> */}
           </div>
         </div>
       </div>

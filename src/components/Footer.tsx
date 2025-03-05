@@ -12,12 +12,12 @@ const Footer = () => {
           </div>
           
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="#" className="hover:text-yellow-500 transition-colors">Home</a>
+            <a href="#" className="hover:text-yellow-500 transition-colors">Acceuil</a>
             <a href="#menu" className="hover:text-yellow-500 transition-colors">Menu</a>
-            <a href="#about" className="hover:text-yellow-500 transition-colors">About</a>
-            <a href="#contact" className="hover:text-yellow-500 transition-colors">Contact</a>
-            <a href="#" className="hover:text-yellow-500 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-yellow-500 transition-colors">Terms of Service</a>
+            <a href="#about" className="hover:text-yellow-500 transition-colors">A propos</a>
+            {/* <a href="#contact" className="hover:text-yellow-500 transition-colors">Contacts</a> */}
+            <a href="#" className="hover:text-yellow-500 transition-colors">Politique de confidentialité</a>
+            <a href="#" className="hover:text-yellow-500 transition-colors">Conditions d'utilisation</a>
           </div>
         </div>
         

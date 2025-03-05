@@ -13,31 +13,31 @@ const About = () => {
                 className="rounded-lg shadow-xl w-full h-[500px] object-cover"
               />
               <div className="absolute -bottom-6 -right-6 bg-yellow-500 p-6 rounded-lg shadow-lg">
-                <p className="text-2xl font-bold">Since 1985</p>
+                <p className="text-2xl font-bold">Depuis 1985</p>
               </div>
             </div>
           </div>
           
           <div className="lg:w-1/2">
-            <h2 className="text-4xl font-bold mb-6">Our Story</h2>
+            <h2 className="text-4xl font-bold mb-6">Notre histoire</h2>
             <p className="text-lg text-stone-600 mb-6">
-              Bella Napoli was founded in 1985 by the Rossi family who immigrated from Naples, Italy, bringing with them authentic recipes passed down through generations. What started as a small family restaurant has grown into a beloved establishment known for its commitment to traditional Italian cuisine.
+              Bella Napoli a été fondée en 1985 par la famille Rossi, qui a immigré de Naples, en Italie, apportant avec elle des recettes authentiques transmises de génération en génération. Ce qui a commencé comme un petit restaurant familial est devenu un établissement apprécié, connu pour son engagement envers la cuisine italienne traditionnelle.
             </p>
             <p className="text-lg text-stone-600 mb-6">
-              Our pizzas are made in the true Neapolitan style - with a thin, soft, and chewy crust cooked in a wood-fired oven at extremely high temperatures for just 60-90 seconds. We use only San Marzano tomatoes, fresh mozzarella, and the finest ingredients imported directly from Italy.
+              Nos pizzas sont préparées dans le plus pur style napolitain : avec une croûte fine, moelleuse et moelleuse cuite dans un four à bois à des températures extrêmement élevées pendant seulement 60 à 90 secondes. Nous utilisons uniquement des tomates San Marzano, de la mozzarella fraîche et les meilleurs ingrédients importés directement d'Italie.
             </p>
             <p className="text-lg text-stone-600 mb-8">
-              Every dish at Bella Napoli tells a story of tradition, passion, and the rich culinary heritage of Italy. We invite you to experience the authentic flavors of Naples right here in your neighborhood.
+              Chaque plat du Bella Napoli raconte une histoire de tradition, de passion et du riche héritage culinaire de l'Italie. Nous vous invitons à découvrir les saveurs authentiques de Naples ici même dans votre quartier.
             </p>
             
             <div className="grid grid-cols-2 gap-6">
               <div className="bg-stone-100 p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-2">Authentic Recipes</h3>
-                <p className="text-stone-600">Traditional recipes passed down through generations</p>
+                <h3 className="text-xl font-bold mb-2">Recettes authentiques</h3>
+                <p className="text-stone-600">Recettes traditionnelles transmises de génération en génération</p>
               </div>
               <div className="bg-stone-100 p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-2">Quality Ingredients</h3>
-                <p className="text-stone-600">Premium ingredients imported directly from Italy</p>
+                <h3 className="text-xl font-bold mb-2">Ingrédients de qualité</h3>
+                <p className="text-stone-600">Ingrédients de première qualité importés directement d'Italie</p>
               </div>
             </div>
           </div>

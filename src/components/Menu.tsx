@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 const menuCategories = [
   { id: 'pizzas', name: 'Pizzas' },
-  { id: 'pastas', name: 'Pastas' },
-  { id: 'starters', name: 'Starters' },
-  { id: 'desserts', name: 'Desserts' },
-  { id: 'drinks', name: 'Drinks' }
+  // { id: 'pastas', name: 'Pastas' },
+  // { id: 'starters', name: 'Starters' },
+  // { id: 'desserts', name: 'Desserts' },
+  // { id: 'drinks', name: 'Drinks' }
 ];
 
 const menuItems = {
@@ -13,28 +13,28 @@ const menuItems = {
     {
       id: 1,
       name: 'Margherita',
-      description: 'San Marzano tomatoes, mozzarella fior di latte, fresh basil, extra virgin olive oil',
+      description: 'Tomates San Marzano, mozzarella fior di latte, basilic frais, huile d\'olive extra vierge',
       price: 12.99,
       image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80'
     },
     {
       id: 2,
       name: 'Diavola',
-      description: 'Tomato sauce, mozzarella, spicy salami, chili flakes',
+      description: 'Sauce tomate, mozzarella, salami épicé, flocons de piment',
       price: 14.99,
       image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1780&q=80'
     },
     {
       id: 3,
       name: 'Quattro Formaggi',
-      description: 'Mozzarella, gorgonzola, parmesan, ricotta, fresh herbs',
+      description: 'Mozzarella, gorgonzola, parmesan, ricotta, herbes fraîches',
       price: 15.99,
       image: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80'
     },
     {
       id: 4,
       name: 'Prosciutto e Funghi',
-      description: 'Tomato sauce, mozzarella, ham, mushrooms, oregano',
+      description: 'Sauce tomate, mozzarella, jambon, champignons, origan',
       price: 16.99,
       image: 'https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
     }
@@ -43,14 +43,14 @@ const menuItems = {
     {
       id: 5,
       name: 'Spaghetti Carbonara',
-      description: 'Pancetta, egg yolk, pecorino romano, black pepper',
+      description: 'Pancetta, jaune d\'oeuf, pecorino romano, poivre noir',
       price: 13.99,
       image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80'
     },
     {
       id: 6,
       name: 'Lasagna',
-      description: 'Layers of pasta, bolognese sauce, béchamel, parmesan',
+      description: 'Couches de pâtes, sauce bolognaise, béchamel, parmesan',
       price: 14.99,
       image: 'https://images.unsplash.com/photo-1619895092538-128341789043?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
     }
@@ -59,14 +59,14 @@ const menuItems = {
     {
       id: 7,
       name: 'Bruschetta',
-      description: 'Grilled bread rubbed with garlic, topped with diced tomatoes, fresh basil, olive oil',
+      description: 'Pain grillé frotté à l\'ail, garni de tomates en dés, de basilic frais et d\'huile d\'olive',
       price: 7.99,
       image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
     },
     {
       id: 8,
       name: 'Caprese Salad',
-      description: 'Fresh mozzarella, tomatoes, basil, balsamic glaze',
+      description: 'Mozzarella fraîche, tomates, basilic, glaçage balsamique',
       price: 9.99,
       image: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1972&q=80'
     }
@@ -75,14 +75,14 @@ const menuItems = {
     {
       id: 9,
       name: 'Tiramisu',
-      description: 'Coffee-soaked ladyfingers, mascarpone cream, cocoa powder',
+      description: 'Biscuits à la cuillère imbibés de café, crème de mascarpone, poudre de cacao',
       price: 8.99,
       image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
     },
     {
       id: 10,
       name: 'Panna Cotta',
-      description: 'Vanilla cream with berry coulis',
+      description: 'Crème à la vanille et coulis de fruits rouges',
       price: 7.99,
       image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
     }
@@ -91,14 +91,14 @@ const menuItems = {
     {
       id: 11,
       name: 'Italian Red Wine',
-      description: 'Glass of house Chianti',
+      description: 'Un verre de la maison Chianti',
       price: 6.99,
       image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
     },
     {
       id: 12,
       name: 'Aperol Spritz',
-      description: 'Aperol, prosecco, soda water, orange slice',
+      description: 'Aperol, prosecco, eau gazeuse, tranche d\'orange',
       price: 8.99,
       image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1776&q=80'
     }
@@ -112,9 +112,9 @@ const Menu = () => {
     <section id="menu" className="py-20 bg-stone-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Our Menu</h2>
+          <h2 className="text-4xl font-bold mb-4">Notre Menu</h2>
           <p className="text-lg text-stone-600 max-w-2xl mx-auto">
-            Discover our selection of authentic Italian dishes made with love and tradition
+            Découvrez notre sélection de plats italiens authentiques préparés avec amour et tradition
           </p>
         </div>
         
@@ -150,13 +150,13 @@ const Menu = () => {
                 <div>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-xl font-bold">{item.name}</h3>
-                    <span className="text-yellow-500 font-bold">€{item.price.toFixed(2)}</span>
+                    {/* <span className="text-yellow-500 font-bold">€{item.price.toFixed(2)}</span> */}
                   </div>
                   <p className="text-stone-600 mb-4">{item.description}</p>
                 </div>
-                <button className="self-start bg-stone-800 text-white px-4 py-2 rounded hover:bg-stone-700 transition-colors">
+                {/* <button className="self-start bg-stone-800 text-white px-4 py-2 rounded hover:bg-stone-700 transition-colors">
                   Add to Order
-                </button>
+                </button> */}
               </div>
             </div>
           ))}
