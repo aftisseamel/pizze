@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 const menuCategories = [
   { id: 'pizzas', name: 'Pizzas' },
-  // { id: 'pastas', name: 'Pastas' },
-  // { id: 'starters', name: 'Starters' },
-  // { id: 'desserts', name: 'Desserts' },
-  // { id: 'drinks', name: 'Drinks' }
+  { id: 'pastas', name: 'Pastas' },
+  { id: 'starters', name: 'Starters' },
+  { id: 'desserts', name: 'Desserts' },
+  { id: 'drinks', name: 'Drinks' }
 ];
 
 const menuItems = {
