@@ -1,5 +1,4 @@
-import React from 'react';
-import { Clock, Phone, MapPin } from 'lucide-react';
+import { Clock, MapPin, Phone } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -8,43 +7,43 @@ const Contact = () => {
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">Visit Us</h2>
           <p className="text-lg text-stone-300 max-w-2xl mx-auto">
-            Come experience the authentic taste of Italy at our restaurant or order online for delivery
+          Venez découvrir le véritable goût de l'Italie dans notre restaurant ou commandez en ligne pour une livraison.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-stone-800 p-8 rounded-lg">
-            <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+            <h3 className="text-2xl font-bold mb-6">Information</h3>
             
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <MapPin className="text-yellow-500 mt-1" />
                 <div>
-                  <h4 className="font-bold mb-1">Address</h4>
-                  <p className="text-stone-300">123 Pizza Street, Foodville, NY 10001</p>
+                  <h4 className="font-bold mb-1">Adresse</h4>
+                  <p className="text-stone-300">2 Rue royal, 59000, Lille</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
                 <Phone className="text-yellow-500 mt-1" />
                 <div>
-                  <h4 className="font-bold mb-1">Phone</h4>
-                  <p className="text-stone-300">+1 (123) 456-7890</p>
+                  <h4 className="font-bold mb-1">Numéro de telephone</h4>
+                  <p className="text-stone-300">+33 (123) 456-7890</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
                 <Clock className="text-yellow-500 mt-1" />
                 <div>
-                  <h4 className="font-bold mb-1">Hours</h4>
-                  <p className="text-stone-300">Monday - Friday: 11am - 10pm</p>
-                  <p className="text-stone-300">Saturday - Sunday: 12pm - 11pm</p>
+                  <h4 className="font-bold mb-1">Heure d'ouverture</h4>
+                  <p className="text-stone-300">Lundi - Vendredi: 11H - 20H</p>
+                  <p className="text-stone-300">Samedi - Dimanche: 12H - 22H</p>
                 </div>
               </div>
             </div>
             
             <div className="mt-8">
-              <h3 className="text-xl font-bold mb-4">Follow Us</h3>
+              <h3 className="text-xl font-bold mb-4">Nous suivre</h3>
               <div className="flex gap-4">
                 <a href="#" className="bg-stone-700 p-3 rounded-full hover:bg-yellow-500 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -68,7 +67,7 @@ const Contact = () => {
                   type="text" 
                   id="name" 
                   className="w-full px-4 py-2 rounded bg-stone-700 border border-stone-600 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                  placeholder="Your name"
+                  placeholder="Votre nom"
                 />
               </div>
               
@@ -78,7 +77,7 @@ const Contact = () => {
                   type="email" 
                   id="email" 
                   className="w-full px-4 py-2 rounded bg-stone-700 border border-stone-600 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                  placeholder="Your email"
+                  placeholder="Votre email"
                 />
               </div>
               
@@ -88,7 +87,7 @@ const Contact = () => {
                   id="message" 
                   rows={4}
                   className="w-full px-4 py-2 rounded bg-stone-700 border border-stone-600 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                  placeholder="Your message"
+                  placeholder="Votre message"
                 ></textarea>
               </div>
               
@@ -96,7 +95,7 @@ const Contact = () => {
                 type="submit" 
                 className="bg-yellow-500 text-stone-900 px-6 py-3 rounded font-medium hover:bg-yellow-400 transition-colors"
               >
-                Send Message
+                Envoyer le message
               </button>
             </form>
           </div>
@@ -112,7 +111,7 @@ const Contact = () => {
               allowFullScreen 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
-              title="Restaurant location"
+              title="Adresse de notre restaurant"
               className="rounded"
             ></iframe>
           </div>

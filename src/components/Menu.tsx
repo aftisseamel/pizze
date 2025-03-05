@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const menuCategories = [
   { id: 'pizzas', name: 'Pizzas' },
@@ -6,6 +6,14 @@ const menuCategories = [
   { id: 'starters', name: 'Starters' },
   { id: 'desserts', name: 'Desserts' },
   { id: 'drinks', name: 'Drinks' }
+];
+
+const filters = [
+  { id: 'Tous', name: 'Tous' },
+  { id: 'tomate', name: 'Base Tomate' },
+  { id: 'creme', name: 'Base Crème' },
+  { id: 'vegetarian', name: 'Végétarien' },
+  { id: 'halal', name: 'Halal' }
 ];
 
 const menuItems = {
@@ -38,7 +46,7 @@ const menuItems = {
       price: 15.99,
       halal : true,
       vegetarian: true,
-      creme : true,
+      créme : true,
       image: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80'
     },
     {
@@ -137,32 +145,31 @@ const menuItems = {
   ]
 };
 
-const filters = [
-  { id: 'all', name: 'All' },
-  { id: 'tomate', name: 'Tomate' },
-  { id: 'creme', name: 'Crème' },
-  { id: 'vegetarian', name: 'Végétarien' },
-  { id: 'halal', name: 'Halal' }
-];
 
 const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('pizzas');
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState('Tous');
 
   const filteredItems = menuItems[activeCategory].filter(item => {
-    if (activeFilter === 'all') {
+    if (activeFilter === 'Tous'){
+      setActiveCategory('Tous');
       return true;
     }
     if (activeFilter === 'tomate') {
-      return item.tomate;
+      setActiveCategory('tomate');
+      return item.base === 'tomate';
     }
-    if (activeFilter === 'creme') {
-      return item.creme;
+
+    if (activeFilter === 'creme'){
+      setActiveCategory('creme');
+      return item.base === 'creme';
     }
-    if (activeFilter === 'vegetarian') {
+    if (activeFilter === 'vegetarian'){
+      setActiveCategory('vegetarian');
       return item.vegetarian;
     }
-    if (activeFilter === 'halal') {
+    if (activeFilter === 'halal'){
+      setActiveCategory('halal');
       return item.halal;
     }
     return true;
