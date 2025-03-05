@@ -125,8 +125,8 @@ const Menu = () => {
               key={category.id}
               className={`px-6 py-2 rounded-full font-medium transition-colors ${
                 activeCategory === category.id
-                  ? 'bg-yellow-500 text-stone-900'
-                  : 'bg-stone-200 text-stone-700 hover:bg-stone-300'
+                  ? 'bg-red-700 text-white'
+                  : 'bg-stone-200 hover:bg-stone-300'
               }`}
               onClick={() => setActiveCategory(category.id)}
             >

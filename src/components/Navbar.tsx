@@ -5,9 +5,9 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-stone-900 text-white sticky top-0 z-50">
+    <nav className="bg-red-700 text-white sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <a href="#" className="flex items-center gap-2 text-2xl font-bold text-yellow-500">
+        <a href="#" className="flex items-center gap-2 text-2xl font-bold" style={{ color: "#ffffff" }}>
           <Pizza size={28} />
           <span>Bella Napoli</span>
         </a>
@@ -34,7 +34,7 @@ const Navbar = () => {
       
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-stone-800 py-4">
+        <div className="md:hidden py-4" style={{ backgroundColor: "#be1622" }}>
           <div className="container mx-auto px-4 flex flex-col space-y-3">
             <a href="#" className="block py-2 hover:text-yellow-500 transition-colors" onClick={() => setIsOpen(false)}>Accueil</a>
             <a href="#menu" className="block py-2 hover:text-yellow-500 transition-colors" onClick={() => setIsOpen(false)}>Menu</a>

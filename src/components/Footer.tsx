@@ -3,7 +3,7 @@ import { Pizza } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-stone-950 text-white py-12">
+    <footer className="bg-red-700 text-white py-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="flex items-center gap-2 text-2xl font-bold text-yellow-500 mb-4 md:mb-0">

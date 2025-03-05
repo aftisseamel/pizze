@@ -15,7 +15,7 @@ const Hero = () => {
       <div className="relative container mx-auto px-4 h-full flex flex-col justify-center items-start">
         <div className="max-w-2xl text-white">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Authentic Italian <span className="text-yellow-500">Pizza</span>
+            Authentic Italian <span className='text-red-700'>Pizza</span>
           </h1>
           <p className="text-xl mb-8">
             Fabriqué à la main avec amour en utilisant des recettes traditionnelles et les meilleurs ingrédients importés d'Italie.
@@ -23,7 +23,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
               href="#menu" 
-              className="bg-yellow-500 text-stone-900 px-6 py-3 rounded-md font-medium hover:bg-yellow-400 transition-colors text-center"
+              className="bg-red-700 text-white-900 px-6 py-3 rounded-md font-medium hover:bg-yellow-400 transition-colors text-center"
             >
               Voir Notre Menu
             </a>

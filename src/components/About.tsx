@@ -12,7 +12,7 @@ const About = () => {
                 alt="Chef making pizza" 
                 className="rounded-lg shadow-xl w-full h-[500px] object-cover"
               />
-              <div className="absolute -bottom-6 -right-6 bg-yellow-500 p-6 rounded-lg shadow-lg">
+              <div className="absolute -bottom-6 -right-6 bg-yellow-500 p-6 rounded-lg shadow-lg" style={{ backgroundColor: "#be1622", color: "#ffffff" }}>
                 <p className="text-2xl font-bold">Depuis 1985</p>
               </div>
             </div>
