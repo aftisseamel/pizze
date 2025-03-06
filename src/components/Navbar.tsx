@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Pizza, Menu, X } from 'lucide-react';
 import { Link } from 'react-scroll';
+import { useTheme } from '../components/ThemeContext'; // Importation du hook pour le thème
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isDarkMode, toggleTheme } = useTheme(); // Accès au thème
 
   return (
     <nav className="bg-red-700 text-white sticky top-0 z-50">
@@ -26,10 +28,14 @@ const Navbar = () => {
           <Link to="hero" smooth={true} duration={500} className="cursor-pointer hover:text-yellow-500 transition-colors">Accueil</Link>
           <Link to="menu" smooth={true} duration={500} className="cursor-pointer hover:text-yellow-500 transition-colors">Menu</Link>
           <Link to="about" smooth={true} duration={500} className="cursor-pointer hover:text-yellow-500 transition-colors">Notre histoire</Link>
-          {/* <Link to="contact" smooth={true} duration={500} className="cursor-pointer hover:text-yellow-500 transition-colors">Contact</Link> */}
-          {/* <Link to="order" smooth={true} duration={500} className="cursor-pointer bg-yellow-500 text-stone-900 px-4 py-2 rounded-md font-medium hover:bg-yellow-400 transition-colors">
-            Order Now
-          </Link> */}
+          
+          {/* Bouton de changement de thème */}
+          <button
+            onClick={toggleTheme}
+            className="cursor-pointer text-yellow-500 hover:text-yellow-400 transition-colors"
+          >
+            {isDarkMode ? 'Mode Clair' : 'Mode Sombre'}
+          </button>
         </div>
       </div>
       
@@ -40,10 +46,6 @@ const Navbar = () => {
             <Link to="hero" smooth={true} duration={500} className="block py-2 cursor-pointer hover:text-yellow-500 transition-colors" onClick={() => setIsOpen(false)}>Accueil</Link>
             <Link to="menu" smooth={true} duration={500} className="block py-2 cursor-pointer hover:text-yellow-500 transition-colors" onClick={() => setIsOpen(false)}>Menu</Link>
             <Link to="about" smooth={true} duration={500} className="block py-2 cursor-pointer hover:text-yellow-500 transition-colors" onClick={() => setIsOpen(false)}>A propos</Link>
-            {/* <Link to="contact" smooth={true} duration={500} className="block py-2 cursor-pointer hover:text-yellow-500 transition-colors" onClick={() => setIsOpen(false)}>Contact</Link> */}
-            {/* <Link to="order" smooth={true} duration={500} className="block py-2 cursor-pointer bg-yellow-500 text-stone-900 px-4 py-2 rounded-md font-medium hover:bg-yellow-400 transition-colors text-center">
-              Order Now
-            </Link> */}
           </div>
         </div>
       )}
