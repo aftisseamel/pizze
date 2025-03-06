@@ -8,12 +8,15 @@ const menuCategories = [
   { id: 'drinks', name: 'Drinks' }
 ];
 
-const filters = [
+// Liste complète des filtres
+const allFilters = [
   { id: 'Tous', name: 'Tous' },
   { id: 'tomate', name: 'Base Tomate' },
   { id: 'creme', name: 'Base Crème' },
   { id: 'vegetarian', name: 'Végétarien' },
-  { id: 'halal', name: 'Halal' }
+  { id: 'halal', name: 'Halal' },
+  { id: 'soft', name: 'Soft' }, // Filtre pour les boissons non alcoolisées
+  { id: 'alcohol', name: 'Alcoolisé' } // Filtre pour les boissons alcoolisées
 ];
 
 type MenuItem = {
@@ -25,6 +28,7 @@ type MenuItem = {
   vegetarian: boolean;
   tomate?: boolean;
   creme?: boolean;
+  alcohol?: boolean; // Nouvelle propriété pour indiquer si la boisson est alcoolisée
   image: string;
 };
 
@@ -79,6 +83,7 @@ const menuItems: MenuItems = {
       vegetarian: false,
       image: 'https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
     }
+
   ],
   pates: [
     {
@@ -133,15 +138,7 @@ const menuItems: MenuItems = {
       vegetarian: true,
       image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
     },
-    {
-      id: 10,
-      name: 'Panna Cotta',
-      description: 'Crème à la vanille et coulis de fruits rouges',
-      price: 7.99,
-      halal : true,
-      vegetarian : true,
-      image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
-    }
+    
   ],
   drinks: [
     {
@@ -149,8 +146,9 @@ const menuItems: MenuItems = {
       name: 'Italian Red Wine',
       description: 'Un verre de la maison Chianti',
       price: 6.99,
-      halal : false,
+      halal: false,
       vegetarian: true,
+      alcohol: true, // Cette boisson est alcoolisée
       image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
     },
     {
@@ -158,35 +156,62 @@ const menuItems: MenuItems = {
       name: 'Aperol Spritz',
       description: 'Aperol, prosecco, eau gazeuse, tranche d\'orange',
       price: 8.99,
-      halal : false,
+      halal: false,
       vegetarian: true,
+      alcohol: true, // Cette boisson est alcoolisée
       image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1776&q=80'
+    },
+    {
+      id: 13,
+      name: 'Limonade',
+      description: 'Limonade maison',
+      price: 4.99,
+      halal: true,
+      vegetarian: true,
+      alcohol: false, // Cette boisson est non alcoolisée
+      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'
     }
   ]
 };
-
 
 const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('pizzas');
   const [activeFilter, setActiveFilter] = useState('Tous');
 
+  // Détermine les filtres disponibles en fonction de la catégorie active
+  const availableFilters = activeCategory === 'drinks'
+    ? allFilters.filter(filter => filter.id === 'Tous' || filter.id === 'soft' || filter.id === 'alcohol') // Filtres pour les boissons
+    : allFilters.filter(filter => filter.id !== 'soft' && filter.id !== 'alcohol'); // Filtres pour les pizzas (exclut soft et alcohol)
+
   const filteredItems = menuItems[activeCategory as keyof MenuItems].filter(item => {
-    if (activeFilter === 'Tous'){
+    if (activeFilter === 'Tous') {
       return true;
     }
-    if (activeFilter === 'tomate') {
-      return item.tomate === true;
+
+    if (activeCategory === 'pizzas') {
+      if (activeFilter === 'tomate') {
+        return item.tomate === true;
+      }
+      if (activeFilter === 'creme') {
+        return item.creme === true;
+      }
+      if (activeFilter === 'vegetarian') {
+        return item.vegetarian;
+      }
+      if (activeFilter === 'halal') {
+        return item.halal;
+      }
     }
 
-    if (activeFilter === 'creme'){
-      return item.creme === true;
+    if (activeCategory === 'drinks') {
+      if (activeFilter === 'soft') {
+        return item.alcohol === false;
+      }
+      if (activeFilter === 'alcohol') {
+        return item.alcohol === true;
+      }
     }
-    if (activeFilter === 'vegetarian'){
-      return item.vegetarian;
-    }
-    if (activeFilter === 'halal'){
-      return item.halal;
-    }
+
     return true;
   });
 
@@ -203,23 +228,28 @@ const Menu = () => {
               className={`px-6 py-2 rounded-full font-medium transition-colors ${
                 activeCategory === category.id ? 'bg-red-700 text-white' : 'bg-stone-200 hover:bg-stone-300'
               }`}
-              onClick={() => setActiveCategory(category.id)}
+              onClick={() => {
+                setActiveCategory(category.id);
+                setActiveFilter('Tous'); // Réinitialiser le filtre lors du changement de catégorie
+              }}
             >
               {category.name}
             </button>
           ))}
         </div>
-        <div className="flex justify-center mb-6">
-          <select
-            className="px-4 py-2 border rounded"
-            value={activeFilter}
-            onChange={(e) => setActiveFilter(e.target.value)}
-          >
-            {filters.map((filter) => (
-              <option key={filter.id} value={filter.id}>{filter.name}</option>
-            ))}
-          </select>
-        </div>
+        {(activeCategory === 'pizzas' || activeCategory === 'drinks') && (
+          <div className="flex justify-center mb-6">
+            <select
+              className="px-4 py-2 border rounded"
+              value={activeFilter}
+              onChange={(e) => setActiveFilter(e.target.value)}
+            >
+              {availableFilters.map((filter) => (
+                <option key={filter.id} value={filter.id}>{filter.name}</option>
+              ))}
+            </select>
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {filteredItems.map((item) => (
             <div key={item.id} className="bg-white rounded-lg overflow-hidden shadow-md flex flex-col md:flex-row">
