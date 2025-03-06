@@ -27,6 +27,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-8">
           <Link to="hero" smooth={true} duration={500} className="cursor-pointer hover:text-yellow-500 transition-colors">Accueil</Link>
           <Link to="menu" smooth={true} duration={500} className="cursor-pointer hover:text-yellow-500 transition-colors">Menu</Link>
+          <Link to="contact" smooth={true} duration={500} className="cursor-pointer hover:text-yellow-500 transition-colors">Nous contacter</Link>
           <Link to="about" smooth={true} duration={500} className="cursor-pointer hover:text-yellow-500 transition-colors">Notre histoire</Link>
           
           {/* Bouton de changement de thème */}
