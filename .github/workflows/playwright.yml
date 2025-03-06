@@ -29,8 +29,10 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run Playwright tests with report
+        run: npx playwright test --reporter=html
+        env:
+          CI: true
 
       - name: Upload Playwright test results (si échec)
         if: failure()
@@ -39,10 +41,7 @@ jobs:
           name: playwright-results
           path: test-results/
 
-      - name: Generate Playwright Report
-        run: npx playwright show-report
-
-      - name: Upload Playwright Report
+      - name: Upload Playwright HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
