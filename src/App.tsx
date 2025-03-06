@@ -7,25 +7,28 @@ import Menu from './components/Menu';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { ThemeProvider } from './components/ThemeContext'; // Import du ThemeProvider
 
 function App() {
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-800">
-      <Navbar />
-      <Element name="hero">
-        <Hero />
-      </Element>
-      <Element name="menu">
-        <Menu />
-      </Element>
-      <Element name="about">
-        <About />
-      </Element>
-      <Element name="contact">
-        <Contact />
-      </Element>
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-stone-50 text-stone-800">
+        <Navbar />
+        <Element name="hero">
+          <Hero />
+        </Element>
+        <Element name="menu">
+          <Menu />
+        </Element>
+        <Element name="about">
+          <About />
+        </Element>
+        <Element name="contact">
+          <Contact />
+        </Element>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 
