@@ -19,27 +19,41 @@ const Menu = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [filters, setFilters] = useState<string[]>([]);
-  const [imageLoaded, setImageLoaded] = useState<{ [key: number]: boolean }>({});
+  const [imageLoaded, setImageLoaded] = useState<{ [key: number]: boolean }>(
+    {}
+  );
   const [showModal, setShowModal] = useState<boolean>(false);
   const [currentItemId, setCurrentItemId] = useState<number | null>(null);
-  const [formData, setFormData] = useState({ nom: "", prenom: "", contenu: "", evaluation: 5 });
+  const [formData, setFormData] = useState({
+    nom: "",
+    prenom: "",
+    contenu: "",
+    evaluation: 5,
+  });
 
-  const addComment = (id: number, nom: string, prenom: string, contenu: string, evaluation: number) => {
+  const addComment = (
+    id: number,
+    nom: string,
+    prenom: string,
+    contenu: string,
+    evaluation: number
+  ) => {
     fetch("https://backoffice.artred02.fr/api/comment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "product_id": id,
-        "commentaire": contenu,
-        "prenom": prenom,
-        "nom": nom,
-        "evaluation": evaluation
-    }),
+        product_id: id,
+        commentaire: contenu,
+        prenom: prenom,
+        nom: nom,
+        evaluation: evaluation,
+      }),
     })
       .then((response) => {
-        if (!response.ok) throw new Error("Erreur lors de l'ajout du commentaire");
+        if (!response.ok)
+          throw new Error("Erreur lors de l'ajout du commentaire");
         return response.json();
       })
       .then((data) => {
@@ -56,7 +70,8 @@ const Menu = () => {
   useEffect(() => {
     fetch("https://backoffice.artred02.fr/api/getProducts")
       .then((response) => {
-        if (!response.ok) throw new Error("Erreur lors de la récupération des données");
+        if (!response.ok)
+          throw new Error("Erreur lors de la récupération des données");
         return response.json();
       })
       .then((data) => {
@@ -86,7 +101,9 @@ const Menu = () => {
   const filteredItems =
     activeCategory && menuItems[activeCategory]
       ? menuItems[activeCategory].filter(
-          (item) => activeFilter === "Tous" || (item.filtres && item.filtres.includes(activeFilter))
+          (item) =>
+            activeFilter === "Tous" ||
+            (item.filtres && item.filtres.includes(activeFilter))
         )
       : [];
 
@@ -114,13 +131,16 @@ const Menu = () => {
   };
 
   if (loading) return <p className="text-center py-20">Chargement...</p>;
-  if (error) return <p className="text-center py-20 text-red-600">Erreur : {error}</p>;
+  if (error)
+    return <p className="text-center py-20 text-red-600">Erreur : {error}</p>;
 
   return (
     <section id="menu" className="py-20 bg-stone-100 dark:bg-stone-800">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 text-stone-900 dark:text-stone-100">Notre Menu</h2>
+          <h2 className="text-4xl font-bold mb-4 text-stone-900 dark:text-stone-100">
+            Notre Menu
+          </h2>
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 mb-6">
@@ -150,7 +170,11 @@ const Menu = () => {
               onChange={(e) => setActiveFilter(e.target.value)}
             >
               {filters.map((filter) => (
-                <option key={filter} value={filter} className="dark:bg-stone-700 dark:text-stone-100">
+                <option
+                  key={filter}
+                  value={filter}
+                  className="dark:bg-stone-700 dark:text-stone-100"
+                >
                   {filter}
                 </option>
               ))}
@@ -168,7 +192,9 @@ const Menu = () => {
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{
-                    backgroundImage: `url(${generateBlurhashImage(item.blurhash)})`,
+                    backgroundImage: `url(${generateBlurhashImage(
+                      item.blurhash
+                    )})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
@@ -178,7 +204,9 @@ const Menu = () => {
                   src={`https://backoffice.artred02.fr/${item.image}`}
                   alt={item.name}
                   className="w-full h-full object-cover"
-                  onLoad={() => setImageLoaded((prev) => ({ ...prev, [item.id]: true }))}
+                  onLoad={() =>
+                    setImageLoaded((prev) => ({ ...prev, [item.id]: true }))
+                  }
                   style={{
                     visibility: imageLoaded[item.id] ? "visible" : "hidden",
                     position: "absolute",
@@ -193,22 +221,29 @@ const Menu = () => {
               <div className="md:w-2/3 p-6 flex flex-col justify-between">
                 <div>
                   <h3 className="text-xl font-bold mb-2">{item.name}</h3>
-                  <p className="text-stone-600 mb-4 dark:text-stone-300">{item.description}</p>
+                  <p className="text-stone-600 mb-4 dark:text-stone-300">
+                    {item.description}
+                  </p>
                   <p className="text-lg font-bold">€{item.price?.toFixed(2)}</p>
-                  { item.moyenne
-                    ? <p className="text-stone-600">Note moyenne : {item.moyenne}/5</p>
-                    : <p className="text-stone-600">Pas de note</p>
-                  }
-                  </div>
-                  <button
-                    className="px-4 py-2 bg-red-700 text-white rounded mt-4"
-                    onClick={() => {
-                      setCurrentItemId(item.id);
-                      setShowModal(true);
-                    }}
-                  >
-                    Commenter
-                  </button>
+                  {item.moyenne ? (
+                    <p className="text-stone-600 dark:text-stone-400">
+                      Note moyenne : {item.moyenne}/5
+                    </p>
+                  ) : (
+                    <p className="text-stone-600 dark:text-stone-400">
+                      Pas de note
+                    </p>
+                  )}
+                </div>
+                <button
+                  className="px-4 py-2 bg-red-700 text-white rounded mt-4"
+                  onClick={() => {
+                    setCurrentItemId(item.id);
+                    setShowModal(true);
+                  }}
+                >
+                  Commenter
+                </button>
               </div>
             </div>
           ))}
@@ -224,7 +259,13 @@ const Menu = () => {
               onSubmit={(e) => {
                 e.preventDefault();
                 if (currentItemId !== null) {
-                  addComment(currentItemId, formData.nom, formData.prenom, formData.contenu, formData.evaluation);
+                  addComment(
+                    currentItemId,
+                    formData.nom,
+                    formData.prenom,
+                    formData.contenu,
+                    formData.evaluation
+                  );
                 }
               }}
             >
@@ -233,7 +274,9 @@ const Menu = () => {
                 <input
                   type="text"
                   value={formData.nom}
-                  onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, nom: e.target.value })
+                  }
                   className="w-full p-2 border rounded dark:bg-stone-700 dark:text-stone-100"
                 />
               </div>
@@ -242,7 +285,9 @@ const Menu = () => {
                 <input
                   type="text"
                   value={formData.prenom}
-                  onChange={(e) => setFormData({ ...formData, prenom: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, prenom: e.target.value })
+                  }
                   className="w-full p-2 border rounded dark:bg-stone-700 dark:text-stone-100"
                 />
               </div>
@@ -250,7 +295,9 @@ const Menu = () => {
                 <label className="block text-sm font-medium">Commentaire</label>
                 <textarea
                   value={formData.contenu}
-                  onChange={(e) => setFormData({ ...formData, contenu: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, contenu: e.target.value })
+                  }
                   className="w-full p-2 border rounded dark:bg-stone-700 dark:text-stone-100"
                 />
               </div>
@@ -258,7 +305,12 @@ const Menu = () => {
                 <label className="block text-sm font-medium">Evaluation</label>
                 <select
                   value={formData.evaluation}
-                  onChange={(e) => setFormData({ ...formData, evaluation: parseInt(e.target.value) })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      evaluation: parseInt(e.target.value),
+                    })
+                  }
                   className="w-full p-2 border rounded dark:bg-stone-700 dark:text-stone-100"
                 >
                   <option value={1}>1</option>
