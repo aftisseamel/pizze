@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { decode } from "blurhash"; // Importer la fonction decode de la bibliothèque blurhash
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState({});
@@ -7,6 +8,7 @@ const Menu = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [filters, setFilters] = useState([]);
+  const [imageLoaded, setImageLoaded] = useState({});
 
   useEffect(() => {
     fetch("https://backoffice.artred02.fr/api/getProducts")
@@ -18,7 +20,6 @@ const Menu = () => {
         setMenuItems(data);
         const categoryList = Object.keys(data);
         if (categoryList.length > 0) setActiveCategory(categoryList[0]);
-
         setLoading(false);
       })
       .catch((err) => {
@@ -47,6 +48,27 @@ const Menu = () => {
           (item) => activeFilter === "Tous" || (item.filtres && item.filtres.includes(activeFilter))
         )
       : [];
+
+  // Fonction pour générer l'image floue à partir du blurhash
+  const generateBlurhashImage = (blurhash, width = 32, height = 32) => {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    canvas.width = width;
+    canvas.height = height;
+
+    const pixels = decode(blurhash, width, height);
+    const imageData = context.createImageData(width, height);
+    
+    for (let i = 0; i < pixels.length; i++) {
+      imageData.data[i * 4] = pixels[i][0]; // R
+      imageData.data[i * 4 + 1] = pixels[i][1]; // G
+      imageData.data[i * 4 + 2] = pixels[i][2]; // B
+      imageData.data[i * 4 + 3] = 255; // Alpha (opaque)
+    }
+    context.putImageData(imageData, 0, 0);
+    
+    return canvas.toDataURL("image/png");
+  };
 
   if (loading) return <p className="text-center py-20">Chargement...</p>;
   if (error) return <p className="text-center py-20 text-red-600">Erreur : {error}</p>;
@@ -102,11 +124,32 @@ const Menu = () => {
               key={item.id}
               className="bg-white rounded-lg overflow-hidden shadow-md flex flex-col md:flex-row dark:bg-stone-700 dark:text-stone-100"
             >
-              <div className="md:w-1/3 h-64 md:h-auto">
+              <div className="md:w-1/3 h-64 md:h-auto relative">
+                {/* Affichage du blurhash comme fond d'image pendant le chargement de l'image réelle */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(${generateBlurhashImage(item.blurhash)})`,
+                    backgroundSize: "cover", // S'assurer que le fond couvre toute la zone
+                    backgroundPosition: "center", // Centrer l'image floue
+                  }}
+                ></div>
+
+                {/* L'image réelle est cachée jusqu'à ce qu'elle soit chargée */}
                 <img
                   src={`https://backoffice.artred02.fr/${item.image}`}
                   alt={item.name}
                   className="w-full h-full object-cover"
+                  onLoad={() => setImageLoaded((prev) => ({ ...prev, [item.id]: true }))}
+                  style={{
+                    visibility: imageLoaded[item.id] ? "visible" : "hidden",
+                    position: "absolute", // Positionner l'image réelle par-dessus le fond flou
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover", // Assurer que l'image couvre bien l'espace
+                  }}
                 />
               </div>
               <div className="md:w-2/3 p-6 flex flex-col justify-between">
@@ -115,11 +158,6 @@ const Menu = () => {
                   <p className="text-stone-600 mb-4 dark:text-stone-300">{item.description}</p>
                   <p className="text-lg font-bold">€{item.price?.toFixed(2)}</p>
                 </div>
-                {item.filtres && item.filtres.length > 0 && (
-                  <div className="mt-4">
-                    <p className="text-sm text-stone-500">Filtres : {item.filtres.join(", ")}</p>
-                  </div>
-                )}
               </div>
             </div>
           ))}
