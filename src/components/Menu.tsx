@@ -53,10 +53,10 @@ const Menu = () => {
   if (error) return <p className="text-center py-20 text-red-600">Erreur : {error}</p>;
 
   return (
-    <section id="menu" className="py-20 bg-stone-100">
+    <section id="menu" className="py-20 bg-stone-100 dark:bg-stone-800">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Notre Menu</h2>
+          <h2 className="text-4xl font-bold mb-4 text-stone-900 dark:text-stone-100">Notre Menu</h2>
         </div>
 
         {/* Boutons de catégories */}
@@ -66,8 +66,8 @@ const Menu = () => {
               key={category.id}
               className={`px-6 py-2 rounded-full font-medium transition-colors ${
                 activeCategory === category.id
-                  ? "bg-red-700 text-white"
-                  : "bg-stone-200 hover:bg-stone-300"
+                  ? 'bg-red-700 text-white'
+                  : 'bg-stone-200 hover:bg-stone-300 dark:bg-stone-700 dark:hover:bg-stone-600 dark:text-stone-100'
               }`}
               onClick={() => {
                 setActiveCategory(category.id);
@@ -83,12 +83,12 @@ const Menu = () => {
         {(activeCategory === "Pizzas" || activeCategory === "Boissons") && (
           <div className="flex justify-center mb-6">
             <select
-              className="px-4 py-2 border rounded"
+              className="px-4 py-2 border rounded dark:bg-stone-700 dark:border-stone-600 dark:text-stone-100"
               value={activeFilter}
               onChange={(e) => setActiveFilter(e.target.value)}
             >
               {availableFilters.map((filter) => (
-                <option key={filter.id} value={filter.id}>
+                <option key={filter.id} value={filter.id} className="dark:bg-stone-700 dark:text-stone-100">
                   {filter.name}
                 </option>
               ))}
@@ -101,7 +101,7 @@ const Menu = () => {
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-lg overflow-hidden shadow-md flex flex-col md:flex-row"
+              className="bg-white rounded-lg overflow-hidden shadow-md flex flex-col md:flex-row dark:bg-stone-700 dark:text-stone-100"
             >
               <div className="md:w-1/3 h-64 md:h-auto">
                 <img
@@ -113,7 +113,7 @@ const Menu = () => {
               <div className="md:w-2/3 p-6 flex flex-col justify-between">
                 <div>
                   <h3 className="text-xl font-bold mb-2">{item.name}</h3>
-                  <p className="text-stone-600 mb-4">{item.description}</p>
+                  <p className="text-stone-600 mb-4 dark:text-stone-300">{item.description}</p>
                   <p className="text-lg font-bold">€{item.price.toFixed(2)}</p>
                 </div>
                 {item.filtres && item.filtres.length > 0 && (
@@ -130,6 +130,7 @@ const Menu = () => {
       </div>
     </section>
   );
+  
 };
 
 export default Menu;
