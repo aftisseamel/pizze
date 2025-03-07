@@ -234,6 +234,36 @@ const Menu = () => {
                       Pas de note
                     </p>
                   )}
+                  {item.commentaires && item.commentaires.length > 0 ? (
+                    <div className="mt-4">
+                      <h4 className="text-lg font-semibold mb-2">
+                        Derniers commentaires :
+                      </h4>
+                      {item.commentaires
+                        .slice(-3)
+                        .reverse()
+                        .map((comment, index) => (
+                          <div
+                            key={index}
+                            className="mb-2 p-2 bg-gray-100 rounded dark:bg-stone-600"
+                          >
+                            <p className="text-sm text-stone-900 dark:text-stone-100">
+                              <span className="font-semibold">
+                                {comment.prenom} {comment.nom}
+                              </span>{" "}
+                              :{` "${comment.commentaire}" `}
+                            </p>
+                            <p className="text-xs text-stone-500 dark:text-stone-400">
+                              Note : {comment.evaluation}/5
+                            </p>
+                          </div>
+                        ))}
+                    </div>
+                  ) : (
+                    <p className="text-stone-600 dark:text-stone-400 mt-4">
+                      Aucun commentaire
+                    </p>
+                  )}
                 </div>
                 <button
                   className="px-4 py-2 bg-red-700 text-white rounded mt-4"
