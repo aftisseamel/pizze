@@ -20,4 +20,8 @@ test.describe('Bella Napoli', () => {
     const vegetarianPizza = await page.locator('h3:has-text("Margherita")');
     await expect(vegetarianPizza).toBeVisible();
   });
+  test('should navigate to the backoffice', async ({ page }) => {
+    await page.goto('https://backoffice.artred02.fr/api/getProducts');
+    await expect(page).toHaveTitle(/Backoffice/);
+  });
 });
