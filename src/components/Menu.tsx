@@ -2,13 +2,23 @@ import { useState, useEffect } from "react";
 import { decode } from "blurhash"; // Importer la fonction decode de la bibliothèque blurhash
 
 const Menu = () => {
-  const [menuItems, setMenuItems] = useState({});
+  interface MenuItem {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    filtres?: string[];
+    blurhash: string;
+    image: string;
+  }
+
+  const [menuItems, setMenuItems] = useState<{ [key: string]: MenuItem[] }>({});
   const [activeCategory, setActiveCategory] = useState("");
   const [activeFilter, setActiveFilter] = useState("Tous");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [filters, setFilters] = useState([]);
-  const [imageLoaded, setImageLoaded] = useState({});
+  const [filters, setFilters] = useState<string[]>([]);
+  const [imageLoaded, setImageLoaded] = useState<{ [key: number]: boolean }>({});
 
   useEffect(() => {
     fetch("https://backoffice.artred02.fr/api/getProducts")
@@ -50,20 +60,23 @@ const Menu = () => {
       : [];
 
   // Fonction pour générer l'image floue à partir du blurhash
-  const generateBlurhashImage = (blurhash, width = 32, height = 32) => {
+  const generateBlurhashImage = (blurhash: string, width = 32, height = 32) => {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
     canvas.width = width;
     canvas.height = height;
 
     const pixels = decode(blurhash, width, height);
+    if (!context) {
+      throw new Error("Failed to get 2D context");
+    }
     const imageData = context.createImageData(width, height);
     
-    for (let i = 0; i < pixels.length; i++) {
-      imageData.data[i * 4] = pixels[i][0]; // R
-      imageData.data[i * 4 + 1] = pixels[i][1]; // G
-      imageData.data[i * 4 + 2] = pixels[i][2]; // B
-      imageData.data[i * 4 + 3] = 255; // Alpha (opaque)
+    for (let i = 0; i < pixels.length; i += 4) {
+      imageData.data[i] = pixels[i]; // R
+      imageData.data[i + 1] = pixels[i + 1]; // G
+      imageData.data[i + 2] = pixels[i + 2]; // B
+      imageData.data[i + 3] = 255; // Alpha (opaque)
     }
     context.putImageData(imageData, 0, 0);
     
